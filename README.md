@@ -6,7 +6,7 @@ Projeto em JavaScript que consiste na criação de um quadro canvas, o qual ser�
 </p>
 
 <ul type="square">
-<li> Status: <b>Incompleto</b>
+<li> <i>Status: <b>Desenvolvendo</b></i>
 </ul>
 
 <h2> Outras informações</h2>
