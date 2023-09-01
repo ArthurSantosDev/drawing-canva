@@ -1,0 +1,59 @@
+@import './abstract/imports.scss';
+
+body {
+    @include set-body();
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4em;
+}
+
+main {
+    padding: 1em;
+}
+
+canvas {
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 2em;
+
+    box-shadow: 3px 4px 5px #00000094;
+}
+
+.buttons {
+    width: 400px;
+    height: 100px;
+    margin: auto;
+    padding: 5px;
+
+    background-color: #0c031f79;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    cursor: pointer;
+}
+
+input[type=button] {
+    background-color: #1ce4e8;
+    border-radius: 4px;
+    padding: 3px;
+
+    color: #000;
+    font-weight: bold;
+
+    width: 150px;
+    height: 30px;
+}
+
+input[type=color] {
+    background: #ffffff57;
+    padding: 3px;
+}

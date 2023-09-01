@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-image: url("https://e0.pxfuel.com/wallpapers/593/380/desktop-wallpaper-sunrise-illustration-digital-art-phone-background-and-mocah-thumbnail.jpg");
+  background-size: cover;
+  color: #fff;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4em;
+}
+@media (min-width: 48em) {
+  body {
+    background-image: url("https://images.hdqwalls.com/wallpapers/sketch-painting-art-4k-bd.jpg");
+  }
+}
+
+main {
+  padding: 1em;
+}
+
+canvas {
+  width: 600px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-bottom: 2em;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5803921569);
+}
+
+.buttons {
+  width: 400px;
+  height: 100px;
+  margin: auto;
+  padding: 5px;
+  background-color: rgba(12, 3, 31, 0.4745098039);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+input {
+  cursor: pointer;
+}
+
+input[type=button] {
+  background-color: #1ce4e8;
+  border-radius: 4px;
+  padding: 3px;
+  color: #000;
+  font-weight: bold;
+  width: 150px;
+  height: 30px;
+}
+
+input[type=color] {
+  background: rgba(255, 255, 255, 0.3411764706);
+  padding: 3px;
+}
+
+/*# sourceMappingURL=index.css.map */

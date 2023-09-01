@@ -1,0 +1,19 @@
+$bg-img-small: url('https://e0.pxfuel.com/wallpapers/593/380/desktop-wallpaper-sunrise-illustration-digital-art-phone-background-and-mocah-thumbnail.jpg');
+$bg-img-large: url('https://images.hdqwalls.com/wallpapers/sketch-painting-art-4k-bd.jpg');
+
+
+@mixin background-image-responsive {
+    background-image: $bg-img-small;
+  
+    @media (min-width: 48em) {
+      background-image: $bg-img-large;
+    }
+}
+  
+
+@mixin set-body {
+    @include background-image-responsive();
+    background-size: cover;
+    color: #fff;
+    font-size: 1em;
+}
