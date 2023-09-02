@@ -1,12 +1,22 @@
+/** 
+ * Classe que representa o quadro canvas da página
+*/
 export class Canvas {
     can_draw = false;
     drawing_touch = false; // Variável para identificar se o desenho está sendo feito com toque
     last_touch = { x: 0, y: 0 };
 
+    /** Construtor da Classe 
+     * @param { HTMLCanvasElement } canvas Elemento HTML Canvas
+     * @param { number } color Código Hexadecimal da cor da caneta
+     * @param { CanvasRenderingContext2D } context Contexto de Renderização do Canvas (2d)
+    */
     constructor(canvas, context, color) {
         this.cnv = canvas;
         this.ctx = context;
         this.color = color;
+
+        // Adicionando listeners para eventos de toque e de mouse
         
         this.cnv.addEventListener('mousedown', this.mouseDown.bind(this));
         this.cnv.addEventListener('mousemove', this.mouseMove.bind(this));
@@ -17,6 +27,7 @@ export class Canvas {
         this.cnv.addEventListener('touchend', this.touchEnd.bind(this));
     }
 
+    /** Modifica a cor da caneta */
     setColor(color_code) {
         this.color = color_code;
     }
@@ -88,6 +99,7 @@ export class Canvas {
         }
     }
 
+    /** Função que limpa o quadro canvas */
     clearBoard () {
         this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);

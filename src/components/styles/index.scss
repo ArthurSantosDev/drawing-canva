@@ -2,24 +2,19 @@
 
 body {
     @include set-body();
+    margin-top: 4em;
+}
+main {
+    width: 100%;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 4em;
-}
-
-main {
-    padding: 1em;
 }
 
 canvas {
-    width: 600px;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 20px;
-    margin-bottom: 2em;
-
-    box-shadow: 3px 4px 5px #00000094;
+    @include set-canvas();
 }
 
 .buttons {
@@ -41,7 +36,7 @@ input {
     cursor: pointer;
 }
 
-input[type=button] {
+input#clear {
     background-color: #1ce4e8;
     border-radius: 4px;
     padding: 3px;
@@ -51,6 +46,18 @@ input[type=button] {
 
     width: 150px;
     height: 30px;
+
+    transition: .4s ease;
+
+    @media screen  and (max-width: 768px) {
+        background-color: #ffc0cb;
+    }
+}
+
+input#clear:hover {
+    width: 160;
+    box-shadow: 4px 4px 8px #fefdfd88;
+    transform: translateY(-2px);
 }
 
 input[type=color] {

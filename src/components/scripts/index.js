@@ -9,6 +9,6 @@ import { Canvas } from "./models/class_canva.js";
         const quadro = new Canvas(cnv, ctx, color.value);
 
         color.addEventListener('change', () => quadro.setColor(color.value));
-        document.querySelector('input[type=button]').addEventListener('click', quadro.clearBoard);
+        document.querySelector('input#clear').addEventListener('click', () => quadro.clearBoard());
     });
 })();
