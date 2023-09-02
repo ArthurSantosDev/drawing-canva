@@ -6,7 +6,8 @@ Projeto em JavaScript que consiste na criação de um quadro canvas, o qual ser�
 </p>
 
 <ul type="square">
-<li> <i>Status: <b>Desenvolvendo</b></i>
+<li> <i>Status: <b>Finalizado</b></i>
+<li> <i>Você pode acessar a página através deste link: <b><a>https://arthursantosdev.github.io/drawing-canva/</a></b></i>
 </ul>
 
 <h2> Outras informações</h2>
