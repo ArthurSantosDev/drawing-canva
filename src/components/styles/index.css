@@ -51,7 +51,7 @@ canvas {
 }
 
 .buttons {
-  width: 400px;
+  width: clamp(40vw, 400px, 300px);
   height: 100px;
   margin: auto;
   padding: 5px;
