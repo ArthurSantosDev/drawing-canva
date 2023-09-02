@@ -1,12 +1,20 @@
 export class Canvas {
     can_draw = false;
-    mouse_x = 0;
-    mouse_y = 0;
+    drawing_touch = false; // Variável para identificar se o desenho está sendo feito com toque
+    last_touch = { x: 0, y: 0 };
 
     constructor(canvas, context, color) {
         this.cnv = canvas;
         this.ctx = context;
         this.color = color;
+        
+        this.cnv.addEventListener('mousedown', this.mouseDown.bind(this));
+        this.cnv.addEventListener('mousemove', this.mouseMove.bind(this));
+        this.cnv.addEventListener('mouseup', this.mouseUp.bind(this));
+
+        this.cnv.addEventListener('touchstart', this.touchStart.bind(this));
+        this.cnv.addEventListener('touchmove', this.touchMove.bind(this));
+        this.cnv.addEventListener('touchend', this.touchEnd.bind(this));
     }
 
     setColor(color_code) {
@@ -29,6 +37,29 @@ export class Canvas {
         this.can_draw = false;
     }
 
+    touchStart(ev) {
+        ev.preventDefault();
+        this.drawing_touch = true;
+        const touch = ev.touches[0];
+        this.last_touch.x = touch.pageX;
+        this.last_touch.y = touch.pageY;
+    }
+
+    touchMove(ev) {
+        ev.preventDefault();
+        if (this.drawing_touch) {
+            const touch = ev.touches[0];
+            this.draw(touch.pageX, touch.pageY);
+            this.last_touch.x = touch.pageX;
+            this.last_touch.y = touch.pageY;
+        }
+    }
+
+    touchEnd(ev) {
+        ev.preventDefault();
+        this.drawing_touch = false;
+    }
+
     draw(x, y) {
         let ponto_x = x - this.cnv.offsetLeft;
         let ponto_y = y - this.cnv.offsetTop;
@@ -36,14 +67,25 @@ export class Canvas {
         this.ctx.beginPath();
         this.ctx.lineWidth = 5;
         this.ctx.lineJoin = 'round';
-        this.ctx.moveTo(this.mouse_x, this.mouse_y);
+        
+        if (this.drawing_touch) {
+            this.ctx.moveTo(this.last_touch.x - this.cnv.offsetLeft, this.last_touch.y - this.cnv.offsetTop);
+        } else {
+            this.ctx.moveTo(this.mouse_x, this.mouse_y);
+        }
+        
         this.ctx.lineTo(ponto_x, ponto_y);
         this.ctx.closePath();
         this.ctx.strokeStyle = this.color;
         this.ctx.stroke();
 
-        this.mouse_x = ponto_x;
-        this.mouse_y = ponto_y;
+        if (this.drawing_touch) {
+            this.last_touch.x = ponto_x;
+            this.last_touch.y = ponto_y;
+        } else {
+            this.mouse_x = ponto_x;
+            this.mouse_y = ponto_y;
+        }
     }
 
     clearBoard () {
