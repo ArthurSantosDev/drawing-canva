@@ -74,20 +74,22 @@ export class Canvas {
     draw(x, y) {
         let ponto_x = x;
         let ponto_y = y;
-        
-        if (this.drawing_touch) {
-            this.ctx.moveTo(this.last_touch.x - this.cnv.offsetLeft, this.last_touch.y - this.cnv.offsetTop);
-        } else {
-            this.ctx.moveTo(this.mouse_x, this.mouse_y);
-        }
+
         this.ctx.lineWidth = 5;
-        this.ctx.lineJoin = 'round';
+        this.ctx.lineCap = 'round';
+        
         this.ctx.lineTo(ponto_x, ponto_y);
         this.ctx.beginPath();
         this.ctx.strokeStyle = this.color;
         this.ctx.stroke();
         
         this.ctx.closePath();
+        
+        if (this.drawing_touch) {
+            this.ctx.moveTo(this.last_touch.x - this.cnv.offsetLeft, this.last_touch.y - this.cnv.offsetTop);
+        } else {
+            this.ctx.moveTo(this.mouse_x, this.mouse_y);
+        }
 
         if (this.drawing_touch) {
             this.last_touch.x = ponto_x;
