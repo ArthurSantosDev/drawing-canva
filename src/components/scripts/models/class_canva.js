@@ -98,6 +98,7 @@ export class Canvas {
             this.mouse_y = ponto_y;
         }
     }
+    
     /** Função que limpa o quadro canvas */
     clearBoard () {
         this.ctx.setTransform(1, 0, 0, 1, 0, 0);
