@@ -85,7 +85,7 @@ export class Canvas {
             this.ctx.moveTo(this.mouse_x, this.mouse_y);
         }
         
-        this.ctx.lineTo(ponto_x, ponto_y);
+        this.ctx.lineTo(this.mouse_x, this.mouse_y);
         this.ctx.closePath();
         this.ctx.strokeStyle = this.color;
         this.ctx.stroke();
