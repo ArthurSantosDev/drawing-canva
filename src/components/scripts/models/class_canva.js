@@ -40,9 +40,7 @@ export class Canvas {
 
     mouseMove(ev) {
         if (this.can_draw) {
-            this.mouse_x = ev.pageX;
-            this.mouse_y = ev.pageY;
-            this.draw(mouse_x, mouse_y);
+            this.draw(ev.pageX, ev.pageY);
         }
     }
 
@@ -62,7 +60,7 @@ export class Canvas {
         ev.preventDefault();
         if (this.drawing_touch) {
             const touch = ev.touches[0];
-            this.draw(this.last_touch.x, this.last_touch.y);
+            this.draw(touch.pageX, touch.pageY);
             this.last_touch.x = touch.pageX;
             this.last_touch.y = touch.pageY;
         }
