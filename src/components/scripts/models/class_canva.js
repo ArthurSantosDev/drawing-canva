@@ -40,7 +40,7 @@ export class Canvas {
 
     mouseMove(ev) {
         if (this.can_draw) {
-            this.draw(ev.pageX - this.cnv.offsetLeft, ev.pageY - this.cnv.offsetTop);
+            this.draw(ev.pageX, ev.pageY);
         }
     }
 
@@ -72,8 +72,8 @@ export class Canvas {
     }
 
     draw(x, y) {
-        let ponto_x = x - this.cnv.offsetLeft;
-        let ponto_y = y - this.cnv.offsetTop;
+        let ponto_x = x;
+        let ponto_y = y;
 
         this.ctx.beginPath();
         this.ctx.lineWidth = 5;
