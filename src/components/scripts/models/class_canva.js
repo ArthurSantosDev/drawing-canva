@@ -31,49 +31,53 @@ export class Canvas {
     setColor(color_code) {
         this.color = color_code;
     }
-
+    
     mouseDown(ev) {
         this.can_draw = true;
-        this.mouse_x = ev.pageX;
-        this.mouse_y = ev.pageY;
+        const rect = this.cnv.getBoundingClientRect(); // Obtenha o retângulo do canvas
+    
+        this.mouse_x = ev.clientX - rect.left; // Use clientX e clientY para obter as coordenadas do evento em relação ao canvas
+        this.mouse_y = ev.clientY - rect.top;
     }
-
+    
     mouseMove(ev) {
         if (this.can_draw) {
-            this.draw(ev.pageX, ev.pageY);
+            const rect = this.cnv.getBoundingClientRect();
+            this.draw(ev.clientX - rect.left, ev.clientY - rect.top);
         }
     }
-
-    mouseUp(ev) {
-        this.can_draw = false;
-    }
-
+    // ...
+    
     touchStart(ev) {
         ev.preventDefault();
         this.drawing_touch = true;
         const touch = ev.touches[0];
-        this.last_touch.x = touch.pageX;
-        this.last_touch.y = touch.pageY;
+        const rect = this.cnv.getBoundingClientRect();
+    
+        this.last_touch.x = touch.clientX - rect.left;
+        this.last_touch.y = touch.clientY - rect.top;
     }
-
+    
     touchMove(ev) {
         ev.preventDefault();
         if (this.drawing_touch) {
             const touch = ev.touches[0];
-            this.draw(touch.pageX, touch.pageY);
-            this.last_touch.x = touch.pageX;
-            this.last_touch.y = touch.pageY;
+            const rect = this.cnv.getBoundingClientRect();
+    
+            this.draw(touch.clientX - rect.left, touch.clientY - rect.top);
+            this.last_touch.x = touch.clientX - rect.left;
+            this.last_touch.y = touch.clientY - rect.top;
         }
     }
-
+    
     touchEnd(ev) {
         ev.preventDefault();
         this.drawing_touch = false;
     }
 
     draw(x, y) {
-        let ponto_x = x;
-        let ponto_y = y;
+        let ponto_x = x - this.cnv.offsetLeft;
+        let ponto_y = y - this.cnv.offsetTop;
 
         this.ctx.beginPath();
         this.ctx.lineWidth = 5;
