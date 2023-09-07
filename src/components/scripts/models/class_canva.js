@@ -72,8 +72,8 @@ export class Canvas {
     }
 
     draw(x, y) {
-        let ponto_x = x;
-        let ponto_y = y;
+        let ponto_x = x - this.cnv.offsetLeft;
+        let ponto_y = y - this.cnv.offsetTop;
 
         this.ctx.beginPath();
         this.ctx.lineWidth = 5;
