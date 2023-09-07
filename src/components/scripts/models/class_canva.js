@@ -40,7 +40,9 @@ export class Canvas {
 
     mouseMove(ev) {
         if (this.can_draw) {
-            this.draw(ev.clientX, ev.clientY);
+            this.mouse_x = ev.clientX;
+            this.mouse_y = ev.clientY;
+            this.draw(mouse_x, mouse_y);
         }
     }
 
@@ -52,17 +54,17 @@ export class Canvas {
         ev.preventDefault();
         this.drawing_touch = true;
         const touch = ev.touches[0];
-        this.last_touch.x = touch.pageX;
-        this.last_touch.y = touch.pageY;
+        this.last_touch.x = touch.clientX;
+        this.last_touch.y = touch.clientY;
     }
 
     touchMove(ev) {
         ev.preventDefault();
         if (this.drawing_touch) {
             const touch = ev.touches[0];
-            this.draw(touch.pageX, touch.pageY);
-            this.last_touch.x = touch.pageX;
-            this.last_touch.y = touch.pageY;
+            this.draw(this.last_touch.x, this.last_touch.y);
+            this.last_touch.x = touch.clientX;
+            this.last_touch.y = touch.clientY;
         }
     }
 
@@ -75,21 +77,20 @@ export class Canvas {
         let ponto_x = x;
         let ponto_y = y;
 
-        this.ctx.lineWidth = 5;
-        this.ctx.lineCap = 'round';
-        
-        this.ctx.lineTo(ponto_x, ponto_y);
         this.ctx.beginPath();
-        this.ctx.strokeStyle = this.color;
-        this.ctx.stroke();
-        
-        this.ctx.closePath();
+        this.ctx.lineWidth = 5;
+        this.ctx.lineJoin = 'round';
         
         if (this.drawing_touch) {
             this.ctx.moveTo(this.last_touch.x - this.cnv.offsetLeft, this.last_touch.y - this.cnv.offsetTop);
         } else {
             this.ctx.moveTo(this.mouse_x, this.mouse_y);
         }
+        
+        this.ctx.lineTo(ponto_x, ponto_y);
+        this.ctx.closePath();
+        this.ctx.strokeStyle = this.color;
+        this.ctx.stroke();
 
         if (this.drawing_touch) {
             this.last_touch.x = ponto_x;
